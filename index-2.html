@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebForge Digital Agency - Professional Web Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066FF;
+            --dark-blue: #003D99;
+            --light-blue: #E6F0FF;
+            --accent-blue: #00A3FF;
+            --white: #FFFFFF;
+            --off-white: #F8FAFC;
+            --text-dark: #0F172A;
+            --text-gray: #475569;
+            --accent-orange: #FF6B35;
+            --gradient-1: linear-gradient(135deg, #0066FF 0%, #00A3FF 100%);
+            --gradient-2: linear-gradient(135deg, #003D99 0%, #0066FF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 102, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 102, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, #E6F0FF 0%, #FFFFFF 50%, #F0F9FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 50px) scale(1.1); }
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .hero-content .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-blue);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 102, 255, 0.15);
+            position: relative;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background: var(--off-white);
+        }
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .mission-card, .vision-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .portfolio-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-item {
+            background: var(--off-white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 102, 255, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .portfolio-content p {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 6rem 5%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+        }
+
+        .testimonials .section-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+        }
+
+        .testimonials .section-header h2,
+        .testimonials .section-header p {
+            color: var(--white);
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-rating {
+            color: var(--accent-orange);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 5%;
+            background: var(--off-white);
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--gradient-1);
+            border-radius: 30px;
+            padding: 5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-container h2 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-container p {
+            font-size: 1.25rem;
+            color: var(--white);
+            opacity: 0.95;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .btn-white:hover {
+            background: var(--light-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 10px 40px rgba(37, 211, 102, 0.6);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float svg {
+            width: 35px;
+            height: 35px;
+            fill: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container, .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-container h2 {
+                font-size: 2rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">WebForge</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Building <span class="highlight">Digital Solutions</span> That Transform Businesses</h1>
+                <p>We create professional websites and custom web applications for schools, businesses, and organizations across Nigeria. Scalable. Reliable. Innovative.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get Started</a>
+                    <a href="#portfolio" class="btn btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects Delivered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Available</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header fade-in">
+            <span class="section-tag">Our Services</span>
+            <h2>What We Offer</h2>
+            <p>Comprehensive digital solutions tailored to meet your business needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🌐</div>
+                <h3>Website Development</h3>
+                <p>Professional, responsive websites that showcase your brand and engage your audience.</p>
+                <ul class="service-features">
+                    <li>Business Websites</li>
+                    <li>School & Institutional Sites</li>
+                    <li>Portfolio Websites</li>
+                    <li>E-commerce Platforms</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">⚙️</div>
+                <h3>Custom Web Applications</h3>
+                <p>Tailor-made web solutions designed to solve your specific business challenges.</p>
+                <ul class="service-features">
+                    <li>Academic Management Systems</li>
+                    <li>School Management Platforms</li>
+                    <li>Booking Systems</li>
+                    <li>Administrative Portals</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>Beautiful, intuitive interfaces that provide exceptional user experiences.</p>
+                <ul class="service-features">
+                    <li>User Interface Design</li>
+                    <li>Mobile-First Layouts</li>
+                    <li>Website Redesign</li>
+                    <li>Optimization Services</li>
+                </ul>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🛠️</div>
+                <h3>Digital Support & Maintenance</h3>
+                <p>Ongoing support to keep your digital presence running smoothly and securely.</p>
+                <ul class="service-features">
+                    <li>Website Maintenance</li>
+                    <li>Hosting Management</li>
+                    <li>Technical Support</li>
+                    <li>Security Monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-visual fade-in">
+                <div class="vision-card">
+                    <h3>🎯 Our Vision</h3>
+                    <p>To become one of Nigeria's leading digital agencies, recognized for innovation, reliability, and scalable web solutions.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>🚀 Our Mission</h3>
+                    <p>To design and deliver high-quality, custom web solutions that empower institutions and businesses to achieve sustainable digital growth.</p>
+                </div>
+            </div>
+            <div class="about-content fade-in">
+                <h2>Why Choose WebForge?</h2>
+                <p>WebForge Digital Agency is a professional web development and digital solutions firm focused on building reliable technology platforms that enable organizations to thrive in an increasingly digital world.</p>
+                <p>We believe technology goes beyond website creation—it's about building efficient digital systems that solve real-world problems and improve organizational performance.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>Custom Solutions</strong><br>
+                            Tailored to your needs
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>Expert Team</strong><br>
+                            Skilled professionals
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>On-Time Delivery</strong><br>
+                            Meeting deadlines
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✓</div>
+                        <div>
+                            <strong>24/7 Support</strong><br>
+                            Always available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="section-header fade-in">
+            <span class="section-tag">Our Work</span>
+            <h2>Featured Projects</h2>
+            <p>Explore some of the amazing projects we've delivered for our clients</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">📚</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Education</span>
+                    <h3>Greenfield Academy</h3>
+                    <p>A comprehensive school management system with student portal, academic tracking, and administrative dashboard. Streamlined operations for over 500 students.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">🏢</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Business</span>
+                    <h3>TechVenture Solutions</h3>
+                    <p>Modern corporate website with service showcase, client testimonials, and integrated contact system. Increased online inquiries by 300%.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">🛒</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">E-commerce</span>
+                    <h3>AfroStyle Marketplace</h3>
+                    <p>Full-featured e-commerce platform with payment integration, inventory management, and order tracking. Processing 1000+ monthly orders.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">📅</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Education</span>
+                    <h3>TimeEd Scheduling System</h3>
+                    <p>Custom timetable management application for schools with automated conflict detection and teacher allocation. Serving 5+ institutions.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">🏨</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Hospitality</span>
+                    <h3>Royal Palace Hotels</h3>
+                    <p>Online booking system with real-time availability, payment processing, and customer management. Boosted direct bookings by 250%.</p>
+                </div>
+            </div>
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image">💼</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Portfolio</span>
+                    <h3>Creative Studios Portfolio</h3>
+                    <p>Stunning portfolio website for creative agency with project galleries, team showcase, and interactive contact form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header fade-in">
+            <span class="section-tag">Client Feedback</span>
+            <h2>What Our Clients Say</h2>
+            <p>Don't just take our word for it - hear from our satisfied clients</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"WebForge transformed our school's digital presence completely. The management system they built has streamlined our operations and saved us countless hours. Highly professional team!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MJ</div>
+                    <div class="author-info">
+                        <h4>Mrs. Jennifer Okonkwo</h4>
+                        <p>Principal, Greenfield Academy</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Outstanding work! Our new website not only looks amazing but has significantly increased our online visibility. The team was responsive, creative, and delivered beyond our expectations."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DO</div>
+                    <div class="author-info">
+                        <h4>David Oluwaseun</h4>
+                        <p>CEO, TechVenture Solutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The e-commerce platform WebForge built for us is robust, user-friendly, and has helped us scale our business tremendously. Their ongoing support is exceptional!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AK</div>
+                    <div class="author-info">
+                        <h4>Aisha Kabir</h4>
+                        <p>Founder, AfroStyle Marketplace</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-container">
+            <h2>Ready to Transform Your Digital Presence?</h2>
+            <p>Let's discuss how we can help your business grow with custom web solutions</p>
+            <div class="cta-button-group">
+                <a href="https://wa.me/2348123456789?text=Hi%20WebForge!%20I'm%20interested%20in%20your%20web%20development%20services." target="_blank" class="btn btn-white">💬 Chat on WhatsApp</a>
+                <a href="mailto:info@webforge.ng" class="btn btn-secondary">📧 Send Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>WebForge</h3>
+                <p>A leading digital agency in Nigeria, specializing in web development and custom digital solutions for schools, businesses, and organizations.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Website Development</a></li>
+                    <li><a href="#services">Web Applications</a></li>
+                    <li><a href="#services">UI/UX Design</a></li>
+                    <li><a href="#services">Maintenance & Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="https://wa.me/2348123456789" target="_blank">WhatsApp</a></li>
+                    <li><a href="mailto:info@webforge.ng">Email</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WebForge Digital Agency. All rights reserved. Building digital excellence across Nigeria.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2348123456789?text=Hi%20WebForge!%20I'm%20interested%20in%20your%20web%20development%20services." 
+       target="_blank" 
+       class="whatsapp-float" 
+       aria-label="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Counter Animation
+        function animateCounter(element, target, suffix = '', duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16); // 60fps
+            const isPercentage = suffix === '%';
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (isPercentage) {
+                    element.textContent = Math.floor(current) + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 16);
+        }
+
+        // Observe hero stats for counter animation
+        const statsObserverOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        let statsAnimated = false;
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) {
+                    statsAnimated = true;
+                    
+                    // Animate each stat
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    
+                    // 50+ Projects
+                    animateCounter(statNumbers[0], 50, '+', 2000);
+                    
+                    // 100% Satisfaction
+                    animateCounter(statNumbers[1], 100, '%', 2000);
+                    
+                    // 24/7 Support (special handling)
+                    let count = 0;
+                    const support = setInterval(() => {
+                        count++;
+                        if (count <= 24) {
+                            statNumbers[2].textContent = count + '/7';
+                        } else {
+                            statNumbers[2].textContent = '24/7';
+                            clearInterval(support);
+                        }
+                    }, 60);
+                    
+                    // 3+ Years
+                    animateCounter(statNumbers[3], 3, '+', 2000);
+                }
+            });
+        }, statsObserverOptions);
+
+        // Start observing the hero stats
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) {
+            // Set initial values to 0
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers[0].textContent = '0+';
+            statNumbers[1].textContent = '0%';
+            statNumbers[2].textContent = '0/7';
+            statNumbers[3].textContent = '0+';
+            
+            statsObserver.observe(heroStats);
+        }
+    </script>
+</body>
+</html>
